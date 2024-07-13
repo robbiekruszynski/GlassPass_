@@ -39,6 +39,9 @@ export const Header = () => {
       <li>
         <NavLink href="/">Main</NavLink>
       </li>
+      <li>
+        <NavLink href="upload/">Upload</NavLink>
+      </li>
   
     </>
   );
