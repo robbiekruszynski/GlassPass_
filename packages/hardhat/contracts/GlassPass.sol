@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts/utils/math/Math.sol';
-import {FHE, euint256, inEuint256} from "@fhenixprotocol/contracts/FHE.sol";
+import "@fhenixprotocol/contracts/FHE.sol";
 import "@fhenixprotocol/contracts/access/Permissioned.sol";
 
 contract TicketStorage is Permissioned {
@@ -83,15 +83,19 @@ contract TicketStorage is Permissioned {
         return ticket.coordinates;
     }
 
-    function activateTicket(string memory eventId, uint256 ticketId, int256 _longitude, int256 _latitude) public view returns (bytes memory) {
+    function activateTicket(string memory eventId, uint256 ticketId, int256 _longitude, int256 _latitude) public view returns (uint256) {
         Ticket memory ticket = eventTickets[eventId][ticketId];
         require(ticket.owner == msg.sender, "Activation unauthorized");
         
         uint256 distance = calculateDistance(ticket, _latitude, _longitude);
         require(distance < 4000, "Too far from event to activate");
 
-        bytes memory output = FHE.seal(ticket.pkey, msg.sender);
+        uint256 output = FHE.decrypt(ticket.pkey);
         return output;
+    }
+
+    function decrypt(euint256 _cipherText) internal pure returns (uint256) {
+        return FHE.decrypt(_cipherText);
     }
 
     function calculateDistance(Ticket memory ticket, int256 x1, int256 y1) internal pure returns (uint256) {
