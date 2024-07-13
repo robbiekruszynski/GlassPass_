@@ -14,7 +14,7 @@ const Upload: NextPage = () => {
         type="text"
         value={text}
         onChange={handleTextChange}
-        placeholder="Enter a string"
+        placeholder="Paste URL here"
         className="border rounded p-2"
       />
       {text && <p className="mt-4">Text entered: {text}</p>}
