@@ -2,10 +2,9 @@
 pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts/utils/math/Math.sol';
-import "@fhenixprotocol/contracts/FHE.sol";
-import "@fhenixprotocol/contracts/access/Permissioned.sol";
+import "fhevm@v0.3.0/lib/TFHE.sol";
 
-contract GlassPass is Permissioned {
+contract TicketStorage {
     error AlreadyClaimed(uint256 ticketClaimableAt);
 
     struct Coordinates {
@@ -17,7 +16,7 @@ contract GlassPass is Permissioned {
     struct Ticket {
         uint256 id;
         address owner;
-        euint256 pkey;
+        euint32 pkey;
         Coordinates coordinates;
         uint256 claimedUntil;
     }
@@ -31,11 +30,11 @@ contract GlassPass is Permissioned {
     event TicketUploaded(string indexed eventId, address indexed owner, uint256 indexed ticketId);
     event TicketOwnerChanged(string indexed eventId, address indexed owner, uint256 indexed ticketId, uint256 claimableAt);
 
-    function uploadTicket(string memory eventId, inEuint256 calldata _pkey, int256 longitude, int256 latitude) public {
+    function uploadTicket(string memory eventId, bytes calldata _pkey, int256 longitude, int256 latitude) public {
         Coordinates memory _coordinates = Coordinates(latitude, longitude);
 
         uint256 newTicketId = eventTicketCounts[eventId];
-        euint256 pkey = FHE.asEuint256(_pkey);
+        euint32 pkey = TFHE.asEuint32(_pkey);
         eventTickets[eventId][newTicketId] = Ticket(newTicketId, msg.sender, pkey, _coordinates, 0);
         eventTicketCounts[eventId]++;
 
@@ -90,12 +89,12 @@ contract GlassPass is Permissioned {
         uint256 distance = calculateDistance(ticket, _latitude, _longitude);
         require(distance < 4000, "Too far from event to activate");
 
-        uint256 output = FHE.decrypt(ticket.pkey);
+        uint256 output = TFHE.decrypt(ticket.pkey);
         return output;
     }
 
-    function decrypt(euint256 _cipherText) internal pure returns (uint256) {
-        return FHE.decrypt(_cipherText);
+    function decrypt(euint32 _cipherText) internal view returns (uint256) {
+        return TFHE.decrypt(_cipherText);
     }
 
     function calculateDistance(Ticket memory ticket, int256 x1, int256 y1) internal pure returns (uint256) {
