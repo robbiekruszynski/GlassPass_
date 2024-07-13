@@ -38,7 +38,10 @@
     "usehooks-ts@^2.7.2": "patch:usehooks-ts@npm:^2.7.2#./.yarn/patches/usehooks-ts-npm-2.7.2-fceffe0e43.patch"
   },
   "dependencies": {
+    "@fhenixprotocol/contracts": "^0.2.1",
     "axios": "^1.7.2",
-    "fhenixjs": "^0.3.0"
+    "ethers": "^6.13.1",
+    "fhenixjs": "^0.3.0",
+    "fhevm": "https://github.com/Inco-fhevm/fhevm"
   }
 }

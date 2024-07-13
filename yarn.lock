@@ -5,6 +5,13 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@adraffy/ens-normalize@npm:1.10.1":
+  version: 1.10.1
+  resolution: "@adraffy/ens-normalize@npm:1.10.1"
+  checksum: 0836f394ea256972ec19a0b5e78cb7f5bcdfd48d8a32c7478afc94dd53ae44c04d1aa2303d7f3077b4f3ac2323b1f557ab9188e8059978748fdcd83e04a80dcc
+  languageName: node
+  linkType: hard
+
 "@adraffy/ens-normalize@npm:1.9.0":
   version: 1.9.0
   resolution: "@adraffy/ens-normalize@npm:1.9.0"
@@ -848,6 +855,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fhenixprotocol/contracts@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "@fhenixprotocol/contracts@npm:0.2.1"
+  dependencies:
+    "@openzeppelin/contracts": ^5.0.0
+  checksum: 5460e47a283ba19c9309c5eff076ff78c85c6899a67944969db7bffbf0f009d1b02ac1147a292b8fb12f2889329f4a2fc799061b28077155038919b3a364f2db
+  languageName: node
+  linkType: hard
+
 "@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -1321,7 +1337,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/curves@npm:^1.0.0":
+"@noble/curves@npm:1.2.0, @noble/curves@npm:^1.0.0":
   version: 1.2.0
   resolution: "@noble/curves@npm:1.2.0"
   dependencies:
@@ -1802,6 +1818,13 @@ __metadata:
   version: 4.8.1
   resolution: "@openzeppelin/contracts@npm:4.8.1"
   checksum: 99acefde1ae42c2d935ec9b4ebd327e786c499a4ec76b9582eb9adb0ff94a77c48047332fba44fb97b82b5a46d80e74d3e5d8cf73d5defa7f746f2a67f070281
+  languageName: node
+  linkType: hard
+
+"@openzeppelin/contracts@npm:^5.0.0, @openzeppelin/contracts@npm:^5.0.1":
+  version: 5.0.2
+  resolution: "@openzeppelin/contracts@npm:5.0.2"
+  checksum: 0cce6fc284bd1d89e2a447027832a62f1356b44ee31088899453e10349a63a62df2f07da63d76e4c41aad9c86b96b650b2b6fc85439ef276850dda1170a047fd
   languageName: node
   linkType: hard
 
@@ -2885,6 +2908,13 @@ __metadata:
   version: 14.18.33
   resolution: "@types/node@npm:14.18.33"
   checksum: 4e23f95186d8ae1d38c999bc6b46fe94e790da88744b0a3bfeedcbd0d9ffe2cb0ff39e85f43014f6739e5270292c1a1f6f97a1fc606fd573a0c17fda9a1d42de
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:18.15.13":
+  version: 18.15.13
+  resolution: "@types/node@npm:18.15.13"
+  checksum: 79cc5a2b5f98e8973061a4260a781425efd39161a0e117a69cd089603964816c1a14025e1387b4590c8e82d05133b7b4154fa53a7dffb3877890a66145e76515
   languageName: node
   linkType: hard
 
@@ -4631,6 +4661,13 @@ __metadata:
   version: 3.0.0
   resolution: "aes-js@npm:3.0.0"
   checksum: 251e26d533cd1a915b44896b17d5ed68c24a02484cfdd2e74ec700a309267db96651ea4eb657bf20aac32a3baa61f6e34edf8e2fec2de440a655da9942d334b8
+  languageName: node
+  linkType: hard
+
+"aes-js@npm:4.0.0-beta.5":
+  version: 4.0.0-beta.5
+  resolution: "aes-js@npm:4.0.0-beta.5"
+  checksum: cc2ea969d77df939c32057f7e361b6530aa6cb93cb10617a17a45cd164e6d761002f031ff6330af3e67e58b1f0a3a8fd0b63a720afd591a653b02f649470e15b
   languageName: node
   linkType: hard
 
@@ -7812,6 +7849,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ethers@npm:^6.13.1":
+  version: 6.13.1
+  resolution: "ethers@npm:6.13.1"
+  dependencies:
+    "@adraffy/ens-normalize": 1.10.1
+    "@noble/curves": 1.2.0
+    "@noble/hashes": 1.3.2
+    "@types/node": 18.15.13
+    aes-js: 4.0.0-beta.5
+    tslib: 2.4.0
+    ws: 8.17.1
+  checksum: beef4b6d117f64c369f44be631e0f666b966374eac0cc0446fa7abe114b11d6b3019060022eec65c031f150711f4913d249de507ff3da3204e654635db80a07e
+  languageName: node
+  linkType: hard
+
 "ethjs-unit@npm:0.1.6":
   version: 0.1.6
   resolution: "ethjs-unit@npm:0.1.6"
@@ -8015,6 +8067,16 @@ __metadata:
     tweetnacl: ^1.0.3
     tweetnacl-util: ^0.15.1
   checksum: ef8750e5604d7daca80a414986d6de68d0aaa5e9a8fc9d97069d16a6d054145c9ce8d3a7c4d612704c12eac86b07f51e1012bc66caf833e0e89c7de3ecf7e765
+  languageName: node
+  linkType: hard
+
+"fhevm@https://github.com/Inco-fhevm/fhevm":
+  version: 0.4.0
+  resolution: "fhevm@https://github.com/Inco-fhevm/fhevm.git#commit=37e4fd664fd2de8921b37746dae82e294d404a30"
+  dependencies:
+    "@openzeppelin/contracts": ^5.0.1
+    hardhat-preprocessor: ^0.1.5
+  checksum: bf6ad1df8cfd9bfdd2350c39eb75eb113fa3353e134660ccd5ffb8c3855f91d2fcea72bda82b6e1d94b1e81edc64d9321cfa541156224b63379842ef3d32900c
   languageName: node
   linkType: hard
 
@@ -8834,6 +8896,17 @@ __metadata:
   peerDependencies:
     hardhat: ^2.0.2
   checksum: 77f8f8d085ff3d9d7787f0227e5355e1800f7d6707bc70171e0567bf69706703ae7f6f53dce1be1d409e7e71e3629a434c94b546bdbbc1e4c1af47cd5d0c6776
+  languageName: node
+  linkType: hard
+
+"hardhat-preprocessor@npm:^0.1.5":
+  version: 0.1.5
+  resolution: "hardhat-preprocessor@npm:0.1.5"
+  dependencies:
+    murmur-128: ^0.2.1
+  peerDependencies:
+    hardhat: ^2.0.5
+  checksum: 7d543c2965828441741950b153d584ff096d7a006975f06af9870e05a928e56122b463c4a1b3b346f9a3baccaa6ee2dec1dfd026a434ac714ebf127bbe842fef
   languageName: node
   linkType: hard
 
@@ -13045,8 +13118,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
+    "@fhenixprotocol/contracts": ^0.2.1
     axios: ^1.7.2
+    ethers: ^6.13.1
     fhenixjs: ^0.3.0
+    fhevm: "https://github.com/Inco-fhevm/fhevm"
     husky: ^8.0.1
     lint-staged: ^13.0.3
   languageName: unknown
@@ -14314,7 +14390,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.1.0, tslib@npm:^2.4.0":
+"tslib@npm:2.4.0, tslib@npm:^2.0.0, tslib@npm:^2.1.0, tslib@npm:^2.4.0":
   version: 2.4.0
   resolution: "tslib@npm:2.4.0"
   checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113
@@ -15123,6 +15199,21 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: 818ff3f8749c172a95a114cceb8b89cedd27e43a82d65c7ad0f7882b1e96a2ee6709e3746a903c3fa88beec0c8bae9a9fcd75f20858b32a166dfb7519316a5d7
+  languageName: node
+  linkType: hard
+
+"ws@npm:8.17.1":
+  version: 8.17.1
+  resolution: "ws@npm:8.17.1"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ">=5.0.2"
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 442badcce1f1178ec87a0b5372ae2e9771e07c4929a3180321901f226127f252441e8689d765aa5cfba5f50ac60dd830954afc5aeae81609aefa11d3ddf5cecf
   languageName: node
   linkType: hard
 

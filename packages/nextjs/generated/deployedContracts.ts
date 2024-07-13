@@ -4,106 +4,110 @@ const contracts = {
       chainId: "31337",
       name: "localhost",
       contracts: {
-        YourContract: {
+        GlassPass: {
           address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
           abi: [
             {
               inputs: [
                 {
-                  internalType: "address",
-                  name: "_owner",
-                  type: "address",
+                  internalType: "uint256",
+                  name: "ticketClaimableAt",
+                  type: "uint256",
                 },
               ],
-              stateMutability: "nonpayable",
-              type: "constructor",
+              name: "AlreadyClaimed",
+              type: "error",
+            },
+            {
+              inputs: [],
+              name: "SignerNotMessageSender",
+              type: "error",
+            },
+            {
+              inputs: [],
+              name: "SignerNotOwner",
+              type: "error",
             },
             {
               anonymous: false,
               inputs: [
                 {
                   indexed: true,
-                  internalType: "address",
-                  name: "greetingSetter",
-                  type: "address",
-                },
-                {
-                  indexed: false,
                   internalType: "string",
-                  name: "newGreeting",
+                  name: "eventId",
                   type: "string",
                 },
                 {
-                  indexed: false,
-                  internalType: "bool",
-                  name: "premium",
-                  type: "bool",
+                  indexed: true,
+                  internalType: "address",
+                  name: "owner",
+                  type: "address",
+                },
+                {
+                  indexed: true,
+                  internalType: "uint256",
+                  name: "ticketId",
+                  type: "uint256",
                 },
                 {
                   indexed: false,
                   internalType: "uint256",
-                  name: "value",
+                  name: "claimableAt",
                   type: "uint256",
                 },
               ],
-              name: "GreetingChange",
+              name: "TicketOwnerChanged",
               type: "event",
             },
             {
-              inputs: [],
-              name: "greeting",
-              outputs: [
+              anonymous: false,
+              inputs: [
                 {
+                  indexed: true,
                   internalType: "string",
-                  name: "",
+                  name: "eventId",
                   type: "string",
                 },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
-              inputs: [],
-              name: "owner",
-              outputs: [
                 {
+                  indexed: true,
                   internalType: "address",
-                  name: "",
+                  name: "owner",
                   type: "address",
                 },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
-              inputs: [],
-              name: "premium",
-              outputs: [
                 {
-                  internalType: "bool",
-                  name: "",
-                  type: "bool",
+                  indexed: true,
+                  internalType: "uint256",
+                  name: "ticketId",
+                  type: "uint256",
                 },
               ],
-              stateMutability: "view",
-              type: "function",
+              name: "TicketUploaded",
+              type: "event",
             },
             {
               inputs: [
                 {
                   internalType: "string",
-                  name: "_newGreeting",
+                  name: "eventId",
                   type: "string",
                 },
+                {
+                  internalType: "uint256",
+                  name: "ticketId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "int256",
+                  name: "_longitude",
+                  type: "int256",
+                },
+                {
+                  internalType: "int256",
+                  name: "_latitude",
+                  type: "int256",
+                },
               ],
-              name: "setGreeting",
-              outputs: [],
-              stateMutability: "payable",
-              type: "function",
-            },
-            {
-              inputs: [],
-              name: "totalCounter",
+              name: "activateTicket",
               outputs: [
                 {
                   internalType: "uint256",
@@ -117,12 +121,75 @@ const contracts = {
             {
               inputs: [
                 {
-                  internalType: "address",
-                  name: "",
-                  type: "address",
+                  internalType: "string",
+                  name: "eventId",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "_ticketId",
+                  type: "uint256",
                 },
               ],
-              name: "userGreetingCounter",
+              name: "getTicket",
+              outputs: [
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "id",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "address",
+                      name: "owner",
+                      type: "address",
+                    },
+                    {
+                      internalType: "euint256",
+                      name: "pkey",
+                      type: "uint256",
+                    },
+                    {
+                      components: [
+                        {
+                          internalType: "int256",
+                          name: "latitude",
+                          type: "int256",
+                        },
+                        {
+                          internalType: "int256",
+                          name: "longitude",
+                          type: "int256",
+                        },
+                      ],
+                      internalType: "struct GlassPass.Coordinates",
+                      name: "coordinates",
+                      type: "tuple",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "claimedUntil",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct GlassPass.Ticket",
+                  name: "",
+                  type: "tuple",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "string",
+                  name: "_eventId",
+                  type: "string",
+                },
+              ],
+              name: "getTicketCount",
               outputs: [
                 {
                   internalType: "uint256",
@@ -134,15 +201,88 @@ const contracts = {
               type: "function",
             },
             {
-              inputs: [],
-              name: "withdraw",
+              inputs: [
+                {
+                  internalType: "string",
+                  name: "eventId",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "ticketId",
+                  type: "uint256",
+                },
+              ],
+              name: "queryEventLocation",
+              outputs: [
+                {
+                  components: [
+                    {
+                      internalType: "int256",
+                      name: "latitude",
+                      type: "int256",
+                    },
+                    {
+                      internalType: "int256",
+                      name: "longitude",
+                      type: "int256",
+                    },
+                  ],
+                  internalType: "struct GlassPass.Coordinates",
+                  name: "coordinates",
+                  type: "tuple",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "string",
+                  name: "eventId",
+                  type: "string",
+                },
+              ],
+              name: "tryReserveTicket",
               outputs: [],
               stateMutability: "nonpayable",
               type: "function",
             },
             {
-              stateMutability: "payable",
-              type: "receive",
+              inputs: [
+                {
+                  internalType: "string",
+                  name: "eventId",
+                  type: "string",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "bytes",
+                      name: "data",
+                      type: "bytes",
+                    },
+                  ],
+                  internalType: "struct inEuint256",
+                  name: "_pkey",
+                  type: "tuple",
+                },
+                {
+                  internalType: "int256",
+                  name: "longitude",
+                  type: "int256",
+                },
+                {
+                  internalType: "int256",
+                  name: "latitude",
+                  type: "int256",
+                },
+              ],
+              name: "uploadTicket",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
             },
           ],
         },
