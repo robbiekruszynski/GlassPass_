@@ -41,31 +41,31 @@ const Home: NextPage = () => {
             <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
               <BugAntIcon className="h-8 w-8 fill-secondary" />
               <p>
-                Tinker with your smart contract using the{" "}
+               
                 <Link href="/debug" passHref className="link">
-                  Debug Contract
+                Query Location
                 </Link>{" "}
-                tab.
+                
               </p>
             </div>
             <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
               <SparklesIcon className="h-8 w-8 fill-secondary" />
               <p>
-                Experiment with{" "}
+               
                 <Link href="/example-ui" passHref className="link">
-                  Example UI
+                  Reserve
                 </Link>{" "}
-                to build your own UI.
+              
               </p>
             </div>
             <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
               <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
               <p>
-                Explore your local transactions with the{" "}
+              
                 <Link href="/blockexplorer" passHref className="link">
-                  Block Explorer
+                 Activate
                 </Link>{" "}
-                tab.
+              
               </p>
             </div>
           </div>

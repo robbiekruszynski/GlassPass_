@@ -118,6 +118,10 @@ const config: HardhatUserConfig = {
       url: "https://sepolia-rpc.scroll.io",
       accounts: [deployerPrivateKey],
     },
+    Fhenix: {
+      url:"",
+      accounts: [deployerPrivateKey],
+    }
   },
   verify: {
     etherscan: {

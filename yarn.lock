@@ -2909,6 +2909,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^18.0.0":
+  version: 18.19.39
+  resolution: "@types/node@npm:18.19.39"
+  dependencies:
+    undici-types: ~5.26.4
+  checksum: d1de755983127b405458c427ae2cf77c89d120a617ca70999086a75fb0b6c6dbc1bdddfe1a8a7374c9ae55ed0589a2bd023ffb3b09ee25440c013afc6502dfe6
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^8.0.0":
   version: 8.10.66
   resolution: "@types/node@npm:8.10.66"
@@ -7987,6 +7996,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fhenixjs@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "fhenixjs@npm:0.3.0"
+  dependencies:
+    "@types/node": ^18.0.0
+    tweetnacl: ^1.0.3
+    tweetnacl-util: ^0.15.1
+  checksum: ef8750e5604d7daca80a414986d6de68d0aaa5e9a8fc9d97069d16a6d054145c9ce8d3a7c4d612704c12eac86b07f51e1012bc66caf833e0e89c7de3ecf7e765
+  languageName: node
+  linkType: hard
+
 "file-entry-cache@npm:^6.0.1":
   version: 6.0.1
   resolution: "file-entry-cache@npm:6.0.1"
@@ -13004,6 +13024,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
+    fhenixjs: ^0.3.0
     husky: ^8.0.1
     lint-staged: ^13.0.3
   languageName: unknown
@@ -14505,6 +14526,13 @@ __metadata:
     has-symbols: ^1.0.3
     which-boxed-primitive: ^1.0.2
   checksum: b7a1cf5862b5e4b5deb091672ffa579aa274f648410009c81cca63fed3b62b610c4f3b773f912ce545bb4e31edc3138975b5bc777fc6e4817dca51affb6380e9
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~5.26.4":
+  version: 5.26.5
+  resolution: "undici-types@npm:5.26.5"
+  checksum: 3192ef6f3fd5df652f2dc1cd782b49d6ff14dc98e5dced492aa8a8c65425227da5da6aafe22523c67f035a272c599bb89cfe803c1db6311e44bed3042fc25487
   languageName: node
   linkType: hard
 

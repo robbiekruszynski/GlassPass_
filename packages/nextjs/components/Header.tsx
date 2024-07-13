@@ -39,12 +39,7 @@ export const Header = () => {
       <li>
         <NavLink href="/">Home</NavLink>
       </li>
-      <li>
-        <NavLink href="/debug">
-          <BugAntIcon className="h-4 w-4" />
-          Redirect to something
-        </NavLink>
-      </li>
+  
     </>
   );
 
@@ -86,7 +81,7 @@ export const Header = () => {
       </div>
       <div className="navbar-end flex-grow mr-4">
         <RainbowKitCustomConnectButton />
-        <FaucetButton />
+        {/* <FaucetButton /> */}
       </div>
     </div>
   );
