@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts/utils/math/Math.sol';
-import "fhevm@v0.3.0/lib/TFHE.sol";
+import "fhevm/lib/TFHE.sol";
 
 contract GlassPass {
     error AlreadyClaimed(uint256 ticketClaimableAt);

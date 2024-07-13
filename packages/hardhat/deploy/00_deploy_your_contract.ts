@@ -24,7 +24,7 @@ const deployGlassPass: DeployFunction = async function (hre: HardhatRuntimeEnvir
   await deploy("GlassPass", {
     from: deployer,
     // Contract constructor arguments
-    args: [deployer],
+    // args: [deployer],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
@@ -32,7 +32,7 @@ const deployGlassPass: DeployFunction = async function (hre: HardhatRuntimeEnvir
   });
 
   // Get the deployed contract
-  // const yourContract = await hre.ethers.getContract("YourContract", deployer);
+  const glassPass = await hre.ethers.getContract("GlassPass", deployer);
 };
 
 export default deployGlassPass;
