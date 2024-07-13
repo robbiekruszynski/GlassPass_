@@ -9,7 +9,7 @@ import { Chain, Connector } from "wagmi";
 
 export default function Web3AuthConnectorInstance(chains: Chain[]) {
   // Create Web3Auth Instance
-  const name = "Scaffold-ETH w/ Web3Auth";
+  const name = "Web3Auth";
   const iconUrl = "./logo.svg";
   const chainConfig = {
     chainNamespace: CHAIN_NAMESPACES.EIP155,

@@ -30,17 +30,6 @@ export const ContractInteraction = () => {
           <div className="flex gap-5 bg-base-200 bg-opacity-80 z-0 p-7 rounded-2xl shadow-lg">
             <span className="text-3xl">👋🏻</span>
             <div>
-              <div>
-                In this page you can see how some of our <strong>hooks & components</strong> work, and how you can bring
-                them to life with your own design! Have fun and try it out!
-              </div>
-              <div className="mt-2">
-                Check out{" "}
-                <code className="italic bg-base-300 text-base font-bold [word-spacing:-0.5rem]">
-                  packages / nextjs/pages / example-ui.tsx
-                </code>{" "}
-                and its underlying components.
-              </div>
             </div>
           </div>
           <button

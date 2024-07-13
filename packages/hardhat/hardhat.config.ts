@@ -119,7 +119,7 @@ const config: HardhatUserConfig = {
       accounts: [deployerPrivateKey],
     },
     Fhenix: {
-      url:"",
+      url:"https://api.helium.fhenix.zone",
       accounts: [deployerPrivateKey],
     }
   },
