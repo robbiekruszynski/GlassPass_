@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const extractDataFromUrl = (url: String): string[] | null => {
+export const extractDataFromUrl = (url: string): string[] | null => {
     const regex = /\/([^/?]+)\?pk=g-([^/?]+)/;
     const matches = url.match(regex);
     
@@ -81,5 +81,25 @@ export const createGoogleMapsUrl = (latitude: BigInt, longitude: BigInt): string
     const lat = Number(latitude) / 1e6
     const long = Number(longitude) / 1e6
     return `https://www.google.com/maps/search/${lat},+${long}/@${lat},${long},17z`;
-  };  
+  };
+  
+export const stringToUint256 = (s: string): BigInt => {
+    const hexRepresentation = Buffer.from(s, 'utf8').toString('hex');
+    
+    // Ensure the hexadecimal fits within uint256 (64 hex digits)
+    if (hexRepresentation.length > 64) {
+        throw new Error("String is too long to fit in a uint256");
+    }
+    
+    // Convert the hexadecimal representation to a bigint
+    const uint256Value = BigInt(`0x${hexRepresentation}`);
+    
+    return uint256Value;
+};
+
+// Example usage:
+const inputString = "Hello, World!";
+const uint256Value = stringToUint256(inputString);
+console.log(`String '${inputString}' as uint256: ${uint256Value}`);
+
   
