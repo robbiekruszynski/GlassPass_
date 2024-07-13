@@ -67,8 +67,7 @@ const extractGeoAddressInfo = async (url: string): Promise<BigInt[] | null> => {
     }
   };
   
-  // Example usage
-//   const url = 'https://example.com/api';
+//   const url = 'https://lu.ma/pccqorn6?pk=g-b3RuLAdPQ3jS1HS';
 //   extractGeoAddressInfo(url).then((result) => {
 //     if (result) {
 //       console.log('Latitude:', result[0]);
@@ -77,4 +76,10 @@ const extractGeoAddressInfo = async (url: string): Promise<BigInt[] | null> => {
 //       console.log('Geo Address Info not found.');
 //     }
 //   });
+
+export const createGoogleMapsUrl = (latitude: BigInt, longitude: BigInt): string => {
+    const lat = Number(latitude) / 1e6
+    const long = Number(longitude) / 1e6
+    return `https://www.google.com/maps/search/${lat},+${long}/@${lat},${long},17z`;
+  };  
   
