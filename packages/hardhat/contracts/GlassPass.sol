@@ -29,7 +29,7 @@ contract TicketStorage {
     mapping(string => uint256) private eventTicketCounts;
 
     event TicketUploaded(string indexed eventId, address indexed owner, uint256 indexed ticketId);
-    event TicketOwnerChanged(string indexed eventId, address indexed owner, uint256 indexed ticketId);
+    event TicketOwnerChanged(string indexed eventId, address indexed owner, uint256 indexed ticketId, uint256 claimableAt);
 
     function uploadTicket(string memory eventId, bytes memory _pkey, int256 longitude, int256 latitude) public {
         Coordinates memory _coordinates = Coordinates(latitude, longitude);
@@ -49,15 +49,30 @@ contract TicketStorage {
         return eventTicketCounts[_eventId];
     }
 
-    function reserveTicket(string memory eventId, uint256 ticketId) public {
-        Ticket memory ticket = eventTickets[eventId][ticketId];
-        if (ticket.claimedUntil < block.number)
-            revert AlreadyClaimed(ticket.claimedUntil);
+    function tryReserveTicket(string memory eventId) public {
+        uint256 initialTicketCount = getTicketCount(eventId);
+        require(initialTicketCount > 0, "Event does not have any available tickets."); 
+        uint256 ticketCount = initialTicketCount;
 
+        while (ticketCount > 0) {
+            ticketCount--;
+            Ticket memory ticket = eventTickets[eventId][ticketCount];
+
+            if (ticket.claimedUntil > block.number) {
+                revert AlreadyClaimed(ticket.claimedUntil);
+            }
+        }
+
+        reserveTicket(eventId, ticketCount);
+    }
+
+    function reserveTicket(string memory eventId, uint256 ticketId) internal {
+        Ticket storage ticket = eventTickets[eventId][ticketId];
         ticket.owner = msg.sender;
-        ticket.claimedUntil = block.number + 150; // Claimed for 30 minutes
+        uint256 reserveUntil = block.number + 150; // Claimed for 30 minutes
+        ticket.claimedUntil = reserveUntil;
 
-        emit TicketOwnerChanged(eventId, msg.sender, ticketId);
+        emit TicketOwnerChanged(eventId, msg.sender, ticket.id, block.number + 150);
     }
 
     function queryEventLocation(string memory eventId, uint256 ticketId) public view returns (Coordinates memory coordinates) {
