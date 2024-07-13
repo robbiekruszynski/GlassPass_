@@ -65,7 +65,6 @@ const Home: NextPage = () => {
                 <Link href="/activate" passHref className="link">
                  Activate
                 </Link>{" "}
-                tab.
               </p>
             </div>
           </div>
