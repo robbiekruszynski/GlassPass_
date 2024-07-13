@@ -62,7 +62,7 @@ const Home: NextPage = () => {
               <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
               <p>
               
-                <Link href="/blockexplorer" passHref className="link">
+                <Link href="/activate.tsx" passHref className="link">
                  Activate
                 </Link>{" "}
                 tab.
