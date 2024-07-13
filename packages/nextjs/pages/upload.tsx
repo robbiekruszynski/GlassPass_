@@ -2,20 +2,27 @@ import type { NextPage } from "next";
 import { useState } from "react";
 
 const Upload: NextPage = () => {
-  const [file, setFile] = useState<File | null>(null);
+  const [text, setText] = useState<string>("");
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      setFile(event.target.files[0]);
-    }
+  const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setText(event.target.value);
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleFileChange} />
-      {file && <p>File selected: {file.name}</p>}
+    <div className="flex flex-col items-center justify-center h-screen">
+      <input
+        type="text"
+        value={text}
+        onChange={handleTextChange}
+        placeholder="Enter a string"
+        className="border rounded p-2"
+      />
+      {text && <p className="mt-4">Text entered: {text}</p>}
     </div>
   );
 };
 
 export default Upload;
+
+
+
