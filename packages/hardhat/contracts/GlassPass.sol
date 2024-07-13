@@ -2,10 +2,10 @@
 pragma solidity ^0.8.0;
 
 import '@openzeppelin/contracts/utils/math/Math.sol';
+import {FHE, euint256, inEuint256} from "@fhenixprotocol/contracts/FHE.sol";
+import "@fhenixprotocol/contracts/access/Permissioned.sol";
 
-contract TicketStorage {
-    using Math for int256;
-
+contract TicketStorage is Permissioned {
     error AlreadyClaimed(uint256 ticketClaimableAt);
 
     struct Coordinates {
@@ -17,7 +17,7 @@ contract TicketStorage {
     struct Ticket {
         uint256 id;
         address owner;
-        bytes pkey;
+        euint256 pkey;
         Coordinates coordinates;
         uint256 claimedUntil;
     }
@@ -31,11 +31,12 @@ contract TicketStorage {
     event TicketUploaded(string indexed eventId, address indexed owner, uint256 indexed ticketId);
     event TicketOwnerChanged(string indexed eventId, address indexed owner, uint256 indexed ticketId, uint256 claimableAt);
 
-    function uploadTicket(string memory eventId, bytes memory _pkey, int256 longitude, int256 latitude) public {
+    function uploadTicket(string memory eventId, inEuint256 calldata _pkey, int256 longitude, int256 latitude) public {
         Coordinates memory _coordinates = Coordinates(latitude, longitude);
 
         uint256 newTicketId = eventTicketCounts[eventId];
-        eventTickets[eventId][newTicketId] = Ticket(newTicketId, msg.sender, _pkey, _coordinates, 0);
+        euint256 pkey = FHE.asEuint256(_pkey);
+        eventTickets[eventId][newTicketId] = Ticket(newTicketId, msg.sender, pkey, _coordinates, 0);
         eventTicketCounts[eventId]++;
 
         emit TicketUploaded(eventId, msg.sender, newTicketId);
@@ -89,7 +90,8 @@ contract TicketStorage {
         uint256 distance = calculateDistance(ticket, _latitude, _longitude);
         require(distance < 4000, "Too far from event to activate");
 
-        return ticket.pkey;
+        bytes memory output = FHE.seal(ticket.pkey, msg.sender);
+        return output;
     }
 
     function calculateDistance(Ticket memory ticket, int256 x1, int256 y1) internal pure returns (uint256) {

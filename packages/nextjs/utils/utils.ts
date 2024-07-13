@@ -86,20 +86,32 @@ export const createGoogleMapsUrl = (latitude: BigInt, longitude: BigInt): string
 export const stringToUint256 = (s: string): BigInt => {
     const hexRepresentation = Buffer.from(s, 'utf8').toString('hex');
     
-    // Ensure the hexadecimal fits within uint256 (64 hex digits)
     if (hexRepresentation.length > 64) {
         throw new Error("String is too long to fit in a uint256");
     }
     
-    // Convert the hexadecimal representation to a bigint
     const uint256Value = BigInt(`0x${hexRepresentation}`);
     
     return uint256Value;
 };
 
 // Example usage:
-const inputString = "Hello, World!";
-const uint256Value = stringToUint256(inputString);
-console.log(`String '${inputString}' as uint256: ${uint256Value}`);
+// const inputString = "b3RuLAdPQ3jS1HS";
+// const uint256Value = stringToUint256(inputString);
+// console.log(`String '${inputString}' as uint256: ${uint256Value}`);
+
+export const uint256ToString = (uint256Value: BigInt): string => {
+    let hexRepresentation = uint256Value.toString(16);
+    if (hexRepresentation.length % 2 !== 0) {
+        hexRepresentation = '0' + hexRepresentation;
+    }
+    const originalString = Buffer.from(hexRepresentation, 'hex').toString('utf8');
+    return originalString;
+};
+
+// Example usage:
+// const uint256Value = 22405534230753963835153736737n; // The bigint value
+// const originalString = uint256ToString(uint256Value);
+// console.log(`Uint256 ${uint256Value} back to string: '${originalString}'`);
 
   
