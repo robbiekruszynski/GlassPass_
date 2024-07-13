@@ -1,7 +1,7 @@
 // components/Map.tsx
 import React, { useEffect, useRef } from 'react';
 
-const DeBug = () => {
+const Query = () => {
   const mapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -33,5 +33,5 @@ const DeBug = () => {
   return <div ref={mapRef} style={{ width: '100%', height: '100vh' }} />;
 };
 
-export default DeBug;
+export default Query;
 
