@@ -22,7 +22,7 @@ export const extractDataFromUrl = (url: string): string[] | null => {
 //     console.log('No data found.');
 //   }
 
-const extractGeoAddressInfo = async (url: string): Promise<BigInt[] | null> => {
+export const extractGeoAddressInfo = async (url: string): Promise<BigInt[] | null> => {
     try {
       const response = await axios.get(url);
       const data = response.data;

@@ -6,6 +6,8 @@ import { BugAntIcon, MagnifyingGlassIcon, SparklesIcon } from "@heroicons/react/
 import { MetaHeader } from "~~/components/MetaHeader";
 import { useGlobalState } from "~~/services/store/store";
 import { web3AuthInstance } from "~~/services/web3/wagmiConnectors";
+import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { createGoogleMapsUrl } from "~~/utils";
 
 const Main: NextPage = () => {
   const setUserInfo = useGlobalState(state => state.setUserInfo);
@@ -26,6 +28,35 @@ const Main: NextPage = () => {
     getUserInfo();
   }, [connector]);
 
+  const { data: location } = useScaffoldContractRead({
+    contractName: "GlassPass",
+    functionName: "queryEventLocation",
+    args: ['raave', BigInt(0)]
+  });
+
+  // const googleMapsLink = createGoogleMapsUrl(location!.latitude, location!.longitude);
+  const googleMapsLink = createGoogleMapsUrl(BigInt(4327433), BigInt(50832822));
+
+  // const { writeAsyncReserve, isLoading } = useScaffoldContractWrite({
+  //   contractName: "GlassPass",
+  //   functionName: "tryReserveTicket",
+  //   args: ['raave'],
+  //   value: parseEther("0"),
+  //   onBlockConfirmation: txnReceipt => {
+  //     console.log("📦 Transaction blockHash", txnReceipt.blockHash);
+  //   },
+  // });
+
+  // const { writeAsyncActivate, isLoading } = useScaffoldContractWrite({
+  //   contractName: "GlassPass",
+  //   functionName: "activateTicket",
+  //   args: ['raave', `0x10`, BigInt(50831168), BigInt(4323989)],
+  //   value: parseEther("0"),
+  //   onBlockConfirmation: txnReceipt => {
+  //     console.log("📦 Transaction blockHash", txnReceipt.blockHash);
+  //   },
+  // });
+
   return (
     <>
       {/* <MetaHeader /> */}
@@ -44,6 +75,7 @@ const Main: NextPage = () => {
                
                 <Link href="/query" passHref className="link">
                 Query Location
+                
                 </Link>{" "}
                 
               </p>
