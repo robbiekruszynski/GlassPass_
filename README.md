@@ -30,7 +30,7 @@ The ciphertext can then be decrypted by the owner and the frontend generates a Q
 - Inco Gentry at address 0x137be9b2027B24597eFEe14B0000507b556259D4 
 
 ### User Flow
-![screenshot](GlassPass.png)
+![screenshot](./GlassPass.png)
 
 
 
