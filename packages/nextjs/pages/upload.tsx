@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
-import { extractDataFromUrl } from "../../nextjs/utils";
+import { extractDataFromUrl, extractGeoAddressInfo } from "../../nextjs/utils";
 import { parseEther } from "ethers";
 
 const Upload: NextPage = () => {
@@ -63,8 +63,5 @@ const Upload: NextPage = () => {
 
 export default Upload;
 
-function extractGeoAddressInfo(text: string): { latitude: any; longitude: any; } {
-  throw new Error("Function not implemented.");
-}
 
 
